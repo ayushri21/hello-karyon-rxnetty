@@ -54,7 +54,7 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                         try{
                         
                         instanceId = execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google");
-                        if(instanceId.contains("Could not resolve host")){
+                        if(instanceId=="curl: (6) Could not resolve host: metadata\n"){
                             instanceId = execCmd("wget -q -O - http://instance-data/latest/meta-data/instance-id");
                         }
                         
