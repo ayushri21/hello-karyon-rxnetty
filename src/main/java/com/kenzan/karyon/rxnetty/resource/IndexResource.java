@@ -52,7 +52,12 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                         String instanceId = "";
                         
                         try{
-                        instanceId = execCmd("wget -q -O - http://instance-data/latest/meta-data/instance-id");
+                        
+                        instanceId = execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google")
+                        if(instanceId.contains("Could not resolve host")){
+                            instanceId = execCmd("wget -q -O - http://instance-data/latest/meta-data/instance-id");
+                        }
+                        
                         } catch (Exception e){
                             e.printStackTrace();
                         }
