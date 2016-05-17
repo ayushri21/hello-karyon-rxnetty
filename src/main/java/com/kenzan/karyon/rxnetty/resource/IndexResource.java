@@ -49,17 +49,24 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                 .flatMap(new Func1<String, Observable<Void>>() {
                     @Override
                     public Observable<Void> call(String body) {
-                        String instanceId = "";
-                        String userdata = "";
+                        String instanceId = "none";
+                      
 
                         try{
+                            instanceId = execCmd("cat /proc/self/cgroup | grep \\\"cpu:/\\\" | sed 's/\\([0-9]\\):cpu:\\/docker\\///g'");
+                            
+                            if(instanceId == "cat: /proc/self/cgroup: No such file or directory"){
+                            
                             instanceId = execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google") + execCmd("wget -q -O - http://instance-data/latest/meta-data/instance-id");
-                            userdata = System.getenv("USERDATA");
+                            }
 
                         } catch (Exception e){
                             e.printStackTrace();
                         }
-                        response.writeString("<html><head><style>body{text-align:center;font-family:'Lucida Grande'}</style></head><body><img src='http://kenzan.com/wp-content/themes/kenzan/images/logo-reg.png' /><h2>Example Spinnaker Application</h2><h3>Instance Id " + instanceId + "</h3><h3>$USERDATA ENV VAR: " + userdata + "</h3></body></html>");
+                        
+                        
+                        
+                        response.writeString("<html><head><style>body{text-align:center;font-family:'Lucida Grande'}</style></head><body><img src='http://kenzan.com/wp-content/themes/kenzan/images/logo-reg.png' /><h2>Example Spinnaker Application</h2><h3>Instance Id " + instanceId + "</h3></body></html>");
                         return response.close();
                     }
                 });
