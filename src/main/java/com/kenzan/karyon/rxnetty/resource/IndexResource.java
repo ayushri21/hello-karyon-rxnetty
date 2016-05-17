@@ -53,12 +53,13 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                       
 
                         try{
-                            instanceId = execCmd("cat /proc/self/cgroup | grep \\\"cpu:/\\\" | sed 's/\\([0-9]\\):cpu:\\/docker\\///g'");
-                            
-                            if(instanceId == "cat: /proc/self/cgroup: No such file or directory"){
+    
                             
                             instanceId = execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google") + execCmd("wget -q -O - http://instance-data/latest/meta-data/instance-id");
-                            }
+                            
+                            
+                            
+                            
 
                         } catch (Exception e){
                             e.printStackTrace();
