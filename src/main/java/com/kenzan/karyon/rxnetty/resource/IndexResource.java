@@ -69,7 +69,7 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                         
                         
                         
-                        response.writeString("<html><head><style>body{text-align:center;font-family:'Lucida Grande'}</style></head><body><img src='http://kenzan.com/wp-content/themes/kenzan/images/logo-reg.png' /><h2>HELLO TEST Gluecon Spinnaker Application</h2><h3>Instance Id " + instanceId + "</h3></body></html>");
+                        response.writeString("<html><head><style>body{text-align:center;font-family:'Lucida Grande'}</style></head><body><img src='http://kenzan.com/wp-content/themes/kenzan/images/logo-reg.png' /><h2>the quick brown fox</h2><h3>Instance Id " + instanceId + "</h3></body></html>");
                         return response.close();
                     }
                 });
