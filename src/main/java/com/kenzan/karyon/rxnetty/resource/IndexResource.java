@@ -55,7 +55,7 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                         try{
     
                             
-                            instanceId = "*" + execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google") + execCmd("wget -q -O - http://instance-data/latest/meta-data/instance-id") + "*";
+                            instanceId = "*" + execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google") + execCmd("wget -q -O - http://169.254.169.254/latest/meta-data/instance-id") + "*";
                             
                             if (instanceId.equals("**")){
                                 instanceId = execCmd("hostname");
@@ -68,7 +68,7 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                         }
                         
                         
-                        String caption = "fantastic!";
+                        String caption = "hello demo";
                         
                         
                         
