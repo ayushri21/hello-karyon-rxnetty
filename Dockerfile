@@ -1,15 +1,15 @@
-FROM java:8
+FROM ubuntu:trusty
 
 MAINTAINER cmoon@kenzan.com
 
-COPY . /opt
-
 WORKDIR /opt
 
-RUN chmod +x gradlew
+RUN echo "deb http://gluecon.s3-website-us-east-1.amazonaws.com trusty main" | sudo tee /etc/apt/sources.list.d/spinnaker.list > /dev/null
 
-RUN ./gradlew clean fatJar
+RUN apt-get update
 
-RUN mv build/libs/hello-karyon-rxnetty-all-0.1.0.jar /hello.jar
+RUN apt-get install -y curl
 
-CMD ["java","-jar","/hello.jar"]
+RUN apt-get install --force-yes -y hello-karyon-rxnetty
+
+CMD ["java","-jar","/opt/hello-karyon-rxnetty/hello-karyon-rxnetty-all-0.1.0.jar"]
