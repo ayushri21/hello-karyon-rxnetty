@@ -68,7 +68,7 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                         }
                         
                         
-                        String caption = "speed check";
+                        String caption = "another speed check";
                         
                         
                         
