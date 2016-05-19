@@ -58,7 +58,7 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                             instanceId = "*" + execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google") + execCmd("wget -q -O - http://instance-data/latest/meta-data/instance-id") + "*";
                             
                             if (instanceId.equals("**")){
-                                instanceId = execCmd("hostname");
+                                instanceId = execCmd("printenv");
                             }
                             
                             
@@ -69,7 +69,7 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                         
                         
                         
-                        response.writeString("<html><head><style>body{text-align:center;font-family:'Lucida Grande'}</style></head><body><img src='http://kenzan.com/wp-content/themes/kenzan/images/logo-reg.png' /><h2>cowabung!</h2><h3>" + instanceId + "</h3></body></html>");
+                        response.writeString("<html><head><style>body{text-align:center;font-family:'Lucida Grande'}</style></head><body><img src='http://kenzan.com/wp-content/themes/kenzan/images/logo-reg.png' /><h2>hello gluecon</h2><h3>" + instanceId + "</h3></body></html>");
                         return response.close();
                     }
                 });
