@@ -68,7 +68,7 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                         }
                         
                         
-                        String caption = "this is an awesome edit!";
+                        String caption = "k8s needs strats";
                         
                         
                         
