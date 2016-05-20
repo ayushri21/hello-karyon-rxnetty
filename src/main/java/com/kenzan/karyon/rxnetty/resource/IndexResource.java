@@ -61,13 +61,20 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                                 instanceId = "container id: " + execCmd("cat /proc/self/cgroup | grep docker | grep -o -E '[0-9a-f]{64}' | head -n 1");
                             }
                             
+                            if (instanceId.equals("container id: ")){
+                                instanceId = "container id: " + execCmd("hostname");
+                            }
+                            
+                           
+                
+                            
                             
                         } catch (Exception e){
                             e.printStackTrace();
                         }
                         
                         
-                        String caption = "hello gluecon!";
+                        String caption = "hello friday!";
                         
                         
                         
