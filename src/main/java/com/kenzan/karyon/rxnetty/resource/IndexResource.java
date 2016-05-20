@@ -74,7 +74,7 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                         }
                         
                         
-                        String caption = "chemical brothers!";
+                        String caption = "spinnaker example application";
                         
                         
                         
