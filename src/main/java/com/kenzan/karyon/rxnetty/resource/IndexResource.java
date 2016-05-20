@@ -55,7 +55,7 @@ public class IndexResource implements RequestHandler<ByteBuf, ByteBuf>{
                         try{
     
                             
-                            instanceId = "instance id: " + execCmd("curl http://metadata/computeMetadata/v1/instance/id -H Metadata-Flavor:Google") + execCmd("wget -q -O - http://169.254.169.254/latest/meta-data/instance-id");
+                            instanceId = "instance id: " + execCmd("wget -q -O - http://169.254.169.254/latest/meta-data/instance-id");
                             
                             if (instanceId.equals("instance id: ")){
                                 instanceId = "container id: " + execCmd("cat /proc/self/cgroup | grep docker | grep -o -E '[0-9a-f]{64}' | head -n 1");
